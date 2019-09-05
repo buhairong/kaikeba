@@ -24,3 +24,37 @@ splice
 join
 concat
 reverse
+
+
+### 字符串
+
+截取类方法：
+    slice(start, end) (slice 严格按照参数的顺序，第0位，start,第一位,end)
+    substr(start,length)
+    substring(start, end) (substring 会比较start 和 end 谁小谁start)
+
+    start  从哪位开始截取(只写start的话，就从start开始一直截取到最后)
+    end    截取到第几位(注意不包含end位)
+    length 截取几位
+
+    字符串中 所有的截取类方法，都是返回一个新的字符串，并不会对原来的字符串进行操作
+
+
+var a = '11'
+var b = '2'
+
+console.log(a > b) // false
+
+str.charCodeAt(index) 将字符串的第几位，转换成 charCode 编码
+"1":49
+"2":50
+
+字符串在比较时，会比较charCode,并且字符串比较时一位一位向后比较的，
+如果第0位编码一样，才会比较下一位，否则直接返回第0位的比较结果
+
+String.fromCharCode(index)  将 charCodeAt 再转换回字符
+
+
+### Number
+
+num.toFixed(i)  保留几位小数，会四舍五入
