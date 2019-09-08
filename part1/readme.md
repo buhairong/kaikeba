@@ -58,3 +58,6 @@ String.fromCharCode(index)  将 charCodeAt 再转换回字符
 ### Number
 
 num.toFixed(i)  保留几位小数，会四舍五入
+
+### 隐式数据类型转换
+https://github.com/motao314/js-
