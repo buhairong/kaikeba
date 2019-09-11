@@ -61,3 +61,11 @@ num.toFixed(i)  保留几位小数，会四舍五入
 
 ### 隐式数据类型转换
 https://github.com/motao314/js-
+
+
+### 排序
+arr.sort(function(a, b){
+    return a - b  // 升序
+    return b - a  // 降序
+    return Math.random() - .5 // 随机排序
+})
