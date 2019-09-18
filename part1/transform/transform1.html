@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
         #box {
             margin: 0 auto;
             width: 200px;
@@ -19,16 +27,20 @@
             font: 140px/200px "宋体";
             color: #fff;
             text-align: center;
+            animation: 3s rotate linear infinite;
         }
-        #box:hover #div{
+        /*#box:hover #div{
             transform: rotate(180deg);
-        }
+        }*/
 
         /*
             transform 变换
                 1. 旋转
                     rotate()  单位: deg
-                2. 斜切
+                2. 斜切  单位: deg
+                    skew(x,y)
+                    skewX()
+                    skewY()
                 3. 缩放
                 4. 位移
         */
