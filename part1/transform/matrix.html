@@ -17,7 +17,6 @@
 </body>
 </html>
 <script>
-// 每次点击时，让box在现有基础上，继续旋转 15deg
 (function(){
     var box = document.getElementById('box');
 
@@ -56,9 +55,32 @@
         box.style.transform = 'matrix('+a+', '+b+', '+c+', '+d+', '+e+', '+f+')';
     }
 
-    box.onclick = function(){
-        scaleY(1.2);
+    // x倾斜
+    function skewX(xDeg){
+        c = Math.tan(xDeg/180 * Math.PI)
+        box.style.transform = 'matrix('+a+', '+b+', '+c+', '+d+', '+e+', '+f+')';
     }
+
+    // y倾斜
+    function skewY(yDeg){
+        b = Math.tan(yDeg/180 * Math.PI)
+        box.style.transform = 'matrix('+a+', '+b+', '+c+', '+d+', '+e+', '+f+')';
+    }
+
+    // 旋转
+    function rotate(deg){
+        a = Math.cos(deg/180 * Math.PI)
+        b = Math.sin(deg/180 * Math.PI)
+        c = -Math.sin(deg/180 * Math.PI)
+        d = Math.cos(deg/180 * Math.PI)
+        box.style.transform = 'matrix('+a+', '+b+', '+c+', '+d+', '+e+', '+f+')';
+    }
+
+    box.onclick = function(){
+        rotate(30);
+    }
+
+    // 矩阵不能再逆向推回之前我们做了哪些操作 -transform 操作的过程不能获取
 })();
 
 </script>
