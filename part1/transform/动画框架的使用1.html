@@ -29,21 +29,38 @@
 
     run.onclick = function(){
         /*
-            transform没有办法获取计算后样式
-            所以在使用 transform, 所有的操作
-            通过css方法进行，而且必须先设置，再获取
+            transform 相关的样式， 在动画前， 一定记得先设置初始值
         */
-        /*css(box, 'translateX', 0)
-        css(box, 'scale', .5)
-        console.log(css(box, 'scale'));*/
-
-        css(box, {
-            width: 200,
-            height: 200,
-            scale: 2,
-            translateX: 100
+        css(box, 'rotate', 0);
+        mTween({
+            el: box,
+            attr: {
+                width: 300
+            },
+            duration: 500, // 默认值 400
+            /*duration: {
+                multiple: 2, // 根据要动画的样式中，最大的差值计算一个时间 multiple：差值的倍数
+                min: 400, // 完成动画的最少时间 毫秒
+                max: 1000, // 完成动画的最大时间 毫秒
+            },*/
+            fx: 'linear', // 动画形式 参考Tween
+            cb: function(){ // 动画完成后的回调函数
+                mTween({
+                    el: box,
+                    attr: {
+                        height: 300
+                    }
+                })
+            },
+            moveing: function(){ // 动画执行过程中的回调函数
+                console.log('动画执行中')
+            }
         })
     };
+
+    stop.onclick = function(){
+        mTween.stop(box);
+    }
 })();    
 </script>    
 </body>
