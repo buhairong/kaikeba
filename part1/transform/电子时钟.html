@@ -105,6 +105,9 @@
         var second = toDB(date.getSeconds());
         var nextTime = hour + minute + second;
         nums.forEach(function(item, index){
+            if (nowTime[index] === nextTime[index]) {
+                return;
+            }
             var divs = item.querySelectorAll('div');
             css(item, 'translateY', 0);
             divs[0].innerHTML = nowTime[index];
