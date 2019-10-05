@@ -11,7 +11,14 @@
             height: 600px;
             perspective:500px;
         }
-
+        @keyframes rotate {
+            0% {
+                transform: translateZ(-1000px) rotateY(0deg);
+            }
+            100% {
+                transform: translateZ(-1000px) rotateY(360deg);
+            }
+        }
         #box3D {
             position:absolute;
             left: 50%;
@@ -20,7 +27,7 @@
             width: 129px;
             height: 1170px;
             transform-style: preserve-3d;
-            transform:translateZ(-1000px);
+            animation: rotate 10s linear infinite;
         }
         #box3D span {
             position: absolute;
