@@ -57,7 +57,7 @@ D. box.removeChild(span)
 ```
 A. window.offsetWidth 
 B. window.clientWidth 
-C. window.innerWidth 
+C. window.innerWidth  // 包含了滚动条
 D. window.innerHTML 
 答案： C
 ```
