@@ -177,7 +177,29 @@ render(data);
 
 let age_sortA = document.querySelectorAll('.age_sort a');
 let gender_showA = document.querySelectorAll('.gender_show a');
-let arr = [...data];
+let arr = [];
+let sortIndex = 2;
+let filterIndex = 2;
+
+let createFn = () => {
+    if (sortIndex === 0 ) {
+        data.sort((a,b) => a.age - b.age);
+    } else if (sortIndex === 1) {
+        data.sort((a,b) => b.age - a.age);
+    } else {
+        data.sort((a,b) => a.id - b.id);
+    }
+
+    if (filterIndex === 0 ) {
+        arr = data.filter((item) => item.gender === '男');
+    } else if (filterIndex === 1) {
+        arr = data.filter((item) => item.gender === '女');
+    } else {
+        arr = data;
+    }
+
+    render(arr);
+}
 
 age_sortA.forEach((item, index) => {
     item.onclick = () => {
@@ -185,33 +207,24 @@ age_sortA.forEach((item, index) => {
             item.classList.remove('active');
         })
         item.classList.add('active');
-        if (index === 0 ) {
-            arr.sort((a,b) => a.age - b.age);
-        } else if (index === 1) {
-            arr.sort((a,b) => b.age - a.age);
-        } else {
-            arr.sort((a,b) => a.id - b.id);
-        }
-        render(arr);
+
+        sortIndex = index;
+
+        createFn();
     }
 })
 
 // 筛选
-
 gender_showA.forEach((item, index) => {
     item.onclick = () => {
         gender_showA.forEach((item) => {
             item.classList.remove('active');
         })
         item.classList.add('active');
-        if (index === 0 ) {
-            arr = data.filter((item) => item.gender === '男');
-        } else if (index === 1) {
-            arr = data.filter((item) => item.gender === '女');
-        } else {
-            arr = data;
-        }
-        render(arr);
+
+        filterIndex = index;
+
+        createFn();
     }
 })
 </script>

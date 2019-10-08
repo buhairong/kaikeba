@@ -59,6 +59,10 @@
     // 渲染页面
     let list = document.querySelector('#list');
     let checkAll = document.querySelector('#checkAll');
+    let removeBtn = document.querySelector('#remove');
+    let newInfo = document.querySelector('#newInfo');
+    let add = document.querySelector('#add');
+
     let render = () => {
         let inner = '';
         data.forEach((item, index) => {
@@ -137,6 +141,28 @@
             item.checked = checkAll.checked
         })
         render();
+    }
+
+    // 批量删除
+    removeBtn.onclick = () => {
+        data = data.filter(item => !item.checked)
+        render();
+    }
+
+    // 添加
+    add.onclick = () => {
+        const val = newInfo.value.trim()
+        if (val) {
+            data.push({
+                id: data[data.length-1].id + 1,
+                title: val,
+                checked: false,
+                collect: false
+            })
+            newInfo.value = ''
+            console.log(data)
+            render()
+        }
     }
 
 </script>
