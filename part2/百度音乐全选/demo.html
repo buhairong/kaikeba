@@ -58,6 +58,7 @@
 
     // 渲染页面
     let list = document.querySelector('#list');
+    let checkAll = document.querySelector('#checkAll');
     let render = () => {
         let inner = '';
         data.forEach((item, index) => {
@@ -74,6 +75,9 @@
               </li>`;
         })
         list.innerHTML = inner;
+
+        // 监控全选状态
+        checkAll.checked = data.every((item) => item.checked) && data.length
 
         // 添加事件
         addEv();
@@ -95,22 +99,45 @@
             checkBox.onchange = () => {
                 // 找到对应的数据，改变checked的状态
                 data[index].checked = checkBox.checked
+
+                // 更新视图
+                render();
             }
 
             // 收藏事件
             collectBtn && (collectBtn.onclick = () => {
                 data[index].collect = true
+
+                // 更新视图
                 render();
             })
+
+            // 取消收藏事件
+            cancelCollectBtn && (cancelCollectBtn.onclick = () => {
+                data[index].collect = false
+
+                // 更新视图
+                render();
+            })
+
+            // 添加删除事件
+            removeBtn.onclick = () => {
+                data.splice(index, 1)
+
+                // 更新视图
+                render();
+            }
         })
     }
 
-
-
-
-
-
-
+    // 添加全选事件
+    checkAll.onclick = () => {
+        // 循环data 将里面所有的checked变为true
+        data.forEach((item, index) => {
+            item.checked = checkAll.checked
+        })
+        render();
+    }
 
 </script>
 </body>
