@@ -20,11 +20,21 @@
     <div></div>
     <script>
         let div = document.querySelector('div');
-        
+
+        // 回调地狱
         div.onclick = function(){
             move(div,'left',200,function(){
                 console.log('运动完了')
-            });
+                move(div,'top',200,function(){
+                    console.log('完事了')
+                    move(div,'left',0,function(){
+                        console.log('运动完了')
+                        move(div,'top',0,function(){
+                            console.log('总算完事了')
+                        })
+                    })
+                })
+            })
         }
 
         function move(el,attr,target,cb){

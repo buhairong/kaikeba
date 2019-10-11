@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+/*  #promise对象
+*   promise 对象是一个构造函数， 用来生成promise实例
+*   所谓promise对象，就是代表了未来某个将要发生的事情（通常是一个异步操作）
+*   它的好处在于，有了promise对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数
+*       pending、resolve、reject
+*       then方法和try/catch -图片加载
+*       then的返回值，会返回一个新的Promise对象，但是状态会有几种情况：
+*          # then的回调函数中没有返回值，then就会返回一个状态为: resolved 的 promise 对象
+*          # then的回调函数返回值是非promise的值，then就会返回一个状态为： resolved 的 promise对象，
+*            另外会把返回值传递给下一个then
+*          # then的回调函数返回值是promise对象，then就直接返回这个promise对象，具体的状态可以由我们
+*            自己定义，具体传递的值，也由我们自己定义
+*
+*    # async函数和await
+*    Promise下的方法：resolve、reject、all、race
+*/
+
+    // promise的使用
+    // promise下分别有两个参数 分别是resolve和reject
+    // pending 等待状态
+    // resolve 成功状态
+    // reject  失败状态
+    let p = new Promise((resolve, reject) => {
+        // 成功的回调函数
+        //resolve('成功')
+
+        // 失败的回调函数
+        //reject('失败')
+
+        // 异步处理
+        setTimeout(function(){
+            resolve('成功了')
+        }, 1000)
+    })
+
+    // then是在promise返回结果之后才执行
+    p.then((info) => {
+        console.log(info)
+    }, () => {
+        console.log('失败时执行')
+    })
+</script>
