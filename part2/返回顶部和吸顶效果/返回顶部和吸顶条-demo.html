@@ -32,8 +32,8 @@
         }
         #float {
             position: absolute;
-            right: 50%;
-            margin-right: -655px;
+            right: 0;
+            /*margin-right: -655px;*/
             width: 50px;
             top: 50%;
             padding-top: 18px;
@@ -96,6 +96,9 @@
 {
     let search = document.querySelector('#search')
     let banner = document.querySelector('#banner')
+    let float = document.querySelector('#float')
+    let backTop = document.querySelector('#backTop')
+    let floatT = float.offsetTop
 
     // 页面滚动时触发
     window.onscroll = function() {
@@ -107,12 +110,53 @@
             getBoundingClientRect().left  元素左侧距离可视区左侧的像素值
             getBoundingClientRect().right  元素右侧距离可视区右侧的像素值
         */
+        bannerShow()
+        floatShow()
+        toTopShow()
+    }
+
+    backTop.onclick = function() {
+        document.body.scrollTop = document.documentElement.scrollTop = 0
+    }
+
+    // 吸顶条
+    function bannerShow() {
         let searchBottom = search.getBoundingClientRect().bottom
 
         if (searchBottom <= 0) {
             banner.style.display = 'block'
         } else {
             banner.style.display = 'none'
+        }
+    }
+
+    // 悬浮框
+    function floatShow() {
+        // 悬浮框判断条件
+        let scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+        let bannerH = banner.offsetHeight
+
+        // 悬浮框距离页面顶部的距离
+        // 滚动条的高度 大于了 floatT
+        if (scrollTop+bannerH > floatT) {
+            float.style.position = 'fixed'
+            float.style.top = bannerH + 'px'
+        } else {
+            float.style.position = 'absolute'
+            float.style.top = '50%'
+        }
+    }
+
+    // 返回顶部按钮显示
+    function toTopShow() {
+        // 返回顶部显示
+        let clientH = document.documentElement.clientHeight
+        // 获取滚动条高度
+        let scrollT = window.scrollY
+        if (scrollT > clientH) {
+            backTop.style.display = 'block'
+        } else {
+            backTop.style.display = 'none'
         }
     }
 
